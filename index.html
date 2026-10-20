@@ -100,6 +100,12 @@
         .hover-sticker-border:hover {
             filter: drop-shadow(0px 0px 0px #BD917E) drop-shadow(6px 0px 0px #BD917E) drop-shadow(-6px 0px 0px #BD917E) drop-shadow(0px 6px 0px #BD917E) drop-shadow(0px -6px 0px #BD917E) drop-shadow(4px 4px 6px rgba(0, 0, 0, 0.3));
         }
+
+        /* Botón CTA: mismo lenguaje sticker que el lobo, con offsets mas
+           finos para que no cargue sobre un boton chico. */
+        .sticker-btn {
+            filter: drop-shadow(0px 0px 0px #BD917E) drop-shadow(3px 0px 0px #BD917E) drop-shadow(-3px 0px 0px #BD917E) drop-shadow(0px 3px 0px #BD917E) drop-shadow(0px -3px 0px #BD917E) drop-shadow(2px 3px 5px rgba(0, 0, 0, 0.35));
+        }
     </style>
 </head>
 
@@ -130,7 +136,7 @@
 
             <!-- Botón cotizador -->
             <a href="https://reservas.modomonte.com/webhook/cotizador-calendario" target="_blank" rel="noopener noreferrer"
-                class="group/quote mt-7 md:mt-9 inline-flex items-center gap-2 md:gap-3 rounded-full bg-mm-bordo text-mm-cream px-6 md:px-9 py-3 md:py-4 font-arca-bold text-xs md:text-base tracking-[0.15em] md:tracking-[0.2em] uppercase shadow-lg shadow-black/30 transition-all duration-500 hover:scale-105 hover:bg-mm-brown hover:tracking-[0.2em] md:hover:tracking-[0.25em] cursor-pointer">
+                class="group/quote mt-7 md:mt-9 inline-flex items-center gap-2.5 md:gap-3 rounded-full bg-mm-cream text-mm-brown px-7 md:px-9 py-3.5 md:py-4 font-arca-bold text-xs md:text-base tracking-[0.18em] md:tracking-[0.2em] uppercase sticker-btn transition-transform duration-500 hover:scale-105 cursor-pointer">
                 COTIZAR
                 <i data-lucide="calendar-days"
                     class="w-4 h-4 md:w-5 md:h-5 transition-transform duration-500 group-hover/quote:rotate-12"></i>
