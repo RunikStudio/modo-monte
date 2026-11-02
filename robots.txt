@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Sin áreas privadas ni panel de administración
+Disallow: /reformas/
+
+Sitemap: https://modomonte.com/sitemap.xml

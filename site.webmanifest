@@ -1,0 +1,17 @@
+{
+    "name": "Modo Monte",
+    "short_name": "Modo Monte",
+    "description": "Glamping en Alpa Corral, Córdoba",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#F3ECE6",
+    "theme_color": "#844C43",
+    "lang": "es-AR",
+    "icons": [
+        {
+            "src": "/favicon.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

@@ -39,6 +39,15 @@
     var pollId = null;
     var lastPanelScan = 0;
 
+    /* Scroll “por foco”: al hacer clic en un link, el navegador le da foco
+       y lo mete en pantalla, lo que desplaza la página y arruina la
+       posición que hay que restaurar. Con estos tres datos se detecta ese
+       desplazamiento y se lo ignora (volviendo atrás a la posición real). */
+    var lastGoodY = null;      // última posición de scroll real del usuario
+    var focusGuardUntil = 0;   // hasta cuándo se ignora el scroll por foco
+    var focusScrollGuard = false;
+    var lastPointerDown = 0;   // momento del último click/toque
+
     /* ---------------------------------------------------------------- */
     /* Almacenamiento                                                     */
     /* ---------------------------------------------------------------- */
@@ -108,8 +117,16 @@
             positions.push(panels[i].scrollTop);
         }
 
+        var y = window.scrollY || window.pageYOffset || 0;
+
+        if (lastGoodY === null) {
+            lastGoodY = y;
+        } else if (!inFocusGuard()) {
+            lastGoodY = y;
+        }
+
         return {
-            y: window.scrollY || window.pageYOffset || 0,
+            y: lastGoodY,
             t: Date.now(),
             panels: positions
         };
@@ -258,7 +275,38 @@
        manda el usuario, no el script. */
     function releaseTarget() {
         userTookOver = true;
+        focusScrollGuard = false;   // el usuario manda: no se corrige nada
         if (watching) stopWatching();
+    }
+
+    /* ---------------------------------------------------------------- */
+    /* Scroll por foco                                                    */
+    /* ---------------------------------------------------------------- */
+
+    function inFocusGuard() {
+        return focusScrollGuard && Date.now() <= focusGuardUntil;
+    }
+
+    function noteFocusScroll() {
+        focusScrollGuard = true;
+        focusGuardUntil = Date.now() + 400;
+    }
+
+    /* Al hacer click, el foco del link puede provocar un scroll que no
+       viene del usuario. Si ese scroll se aleja de la posición real, se
+       vuelve atrás: así la posición guardada sigue siendo la correcta. */
+    function handleScroll(event) {
+        if (inFocusGuard()) {
+            var current = window.scrollY || window.pageYOffset || 0;
+
+            if (lastGoodY !== null && Math.abs(current - lastGoodY) > TOLERANCE) {
+                scrollToInstant(lastGoodY);
+                focusGuardUntil = Date.now() + 1500;   // sigue protegido un rato
+                return;
+            }
+        }
+
+        scheduleSave();
     }
 
     /* ---------------------------------------------------------------- */
@@ -280,11 +328,12 @@
 
         var state = readState();
         if (state) {
+            lastGoodY = state.y;
             startWatching(state);
         }
 
         /* --- guardado --- */
-        window.addEventListener('scroll', scheduleSave, { passive: true });
+        window.addEventListener('scroll', handleScroll, { passive: true });
         window.addEventListener('pagehide', saveState);
         window.addEventListener('beforeunload', saveState);
         document.addEventListener('visibilitychange', function () {
@@ -297,6 +346,20 @@
         window.addEventListener('keydown', function (event) {
             var keys = ['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '];
             if (keys.indexOf(event.key) !== -1) releaseTarget();
+        }, true);
+
+        /* --- scroll por foco al hacer click en un link --- */
+        document.addEventListener('mousedown', function () {
+            lastPointerDown = Date.now();
+        }, true);
+        document.addEventListener('touchstart', function () {
+            lastPointerDown = Date.now();
+        }, true);
+        document.addEventListener('focusin', function () {
+            // solo si el foco viene de un click (no de navegación por teclado)
+            if (Date.now() - lastPointerDown < 800) {
+                noteFocusScroll();
+            }
         }, true);
 
         /* --- bfcache: la pagina vuelve sin recargarse --- */
