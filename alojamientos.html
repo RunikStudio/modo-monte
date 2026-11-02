@@ -238,53 +238,55 @@
 
     <!-- 5. NUEVA SECCIÓN DERECHA: TARIFAS Y COMBOS -->
     <div
-        class="w-full md:flex-[1.15] lg:flex-[1.05] min-h-[30dvh] md:h-screen bg-mm-panel text-mm-cream flex flex-col justify-between relative overflow-hidden transition-all duration-500 ease-in-out md:hover:flex-[1.35] z-20">
+        class="w-full md:flex-[1.15] lg:flex-[1.05] min-h-[48dvh] md:min-h-0 md:h-screen bg-mm-panel text-mm-cream flex flex-col justify-between relative overflow-hidden transition-all duration-500 ease-in-out md:hover:flex-[1.35] z-20">
 
         <!-- ================= VISTA MOBILE ================= -->
         <div class="flex md:hidden w-full h-full flex-col justify-between py-5 gap-4">
-            
-            <div class="grid grid-cols-2 gap-3 w-full items-start">
-                <!-- Columna Izquierda Mobile (Pills desde la izquierda) -->
-                <div class="flex flex-col gap-2.5 pr-1">
-                    <div class="bg-mm-cream text-mm-brown rounded-r-full py-1.5 px-4 shadow-sm w-fit">
-                        <span class="font-arca-bold text-sm sm:text-base tracking-wider block">TARIFAS</span>
-                    </div>
-                    <a href="alojamientos/tarifa-general.html"
-                        class="bg-mm-pill text-mm-cream rounded-r-full py-1.5 px-4 w-full hover:bg-mm-bordo transition-colors">
-                        <span class="font-body font-bold text-xs sm:text-sm tracking-wide block">GENERALES</span>
-                    </a>
 
-                    <div class="bg-mm-cream text-mm-brown rounded-r-full py-1.5 px-4 shadow-sm w-fit mt-1">
-                        <span class="font-arca-bold text-sm sm:text-base tracking-wider block">COMBOS</span>
-                    </div>
+            <!-- Columna única: pills apilados, redondeados a la derecha -->
+            <div class="flex flex-col items-start gap-2 w-full">
+
+                <!-- TARIFAS -->
+                <div class="bg-mm-cream text-mm-brown rounded-r-full py-2 px-5 shadow-sm">
+                    <span class="font-arca-bold text-base sm:text-lg tracking-wider block">TARIFAS</span>
                 </div>
 
-                <!-- Columna Derecha Mobile (Pills desde la derecha) -->
-                <div class="flex flex-col gap-2 pl-1 items-end text-left">
-                    <a href="alojamientos/escapadita-en-manada.html"
-                        class="bg-mm-pill text-mm-cream rounded-l-2xl py-2 px-3.5 w-full hover:bg-mm-bordo transition-colors">
-                        <p class="font-body font-bold text-[11px] sm:text-xs leading-tight tracking-wide uppercase">
-                            ESCAPADITA EN<br>MANADA
-                        </p>
-                        <p class="font-body font-normal text-[10px] opacity-90 leading-tight mt-1">
-                            Pack x4 x5 x6<br>Pack x7 x8 x9
-                        </p>
-                    </a>
+                <!-- GENERALES -->
+                <a href="alojamientos/tarifa-general.html"
+                    class="bg-mm-pill hover:bg-mm-bordo text-mm-cream rounded-r-full py-2 px-5 transition-colors">
+                    <span class="font-body font-bold text-sm sm:text-base tracking-wide block">GENERALES</span>
+                </a>
 
-                    <a href="alojamientos/verano-a-la-vista.html"
-                        class="bg-mm-pill text-mm-cream rounded-l-2xl py-2 px-3.5 w-full hover:bg-mm-bordo transition-colors">
-                        <p class="font-body font-bold text-[11px] sm:text-xs leading-tight tracking-wide uppercase">
-                            VERANO A LA VISTA
-                        </p>
-                        <p class="font-body font-normal text-[10px] opacity-90 leading-tight mt-0.5">
-                            Válido Enero y Febrero
-                        </p>
-                    </a>
+                <!-- COMBOS -->
+                <div class="bg-mm-cream text-mm-brown rounded-r-full py-2 px-5 shadow-sm mt-2">
+                    <span class="font-arca-bold text-base sm:text-lg tracking-wider block">COMBOS</span>
                 </div>
+
+                <!-- ESCAPADITA EN MANADA -->
+                <a href="alojamientos/escapadita-en-manada.html"
+                    class="bg-mm-pill hover:bg-mm-bordo text-mm-cream rounded-r-[32px] py-3 px-5 transition-colors">
+                    <p class="font-body font-bold text-xs sm:text-sm tracking-wider leading-snug uppercase">
+                        ESCAPADITA EN<br>MANADA
+                    </p>
+                    <p class="font-body font-normal text-[11px] opacity-90 leading-tight mt-1">
+                        Pack x4 x5 x6<br>Pack x7 x8 x9
+                    </p>
+                </a>
+
+                <!-- VERANO A LA VISTA -->
+                <a href="alojamientos/verano-a-la-vista.html"
+                    class="bg-mm-pill hover:bg-mm-bordo text-mm-cream rounded-r-[28px] py-2.5 px-5 transition-colors">
+                    <p class="font-body font-bold text-xs sm:text-sm tracking-wider leading-snug uppercase">
+                        VERANO A LA VISTA
+                    </p>
+                    <p class="font-body font-normal text-[11px] opacity-90 leading-tight mt-0.5">
+                        Válido Enero y Febrero
+                    </p>
+                </a>
             </div>
 
             <!-- Pie de sección Mobile: Disponibilidad + Contacto -->
-            <div class="flex flex-row items-center justify-between w-full pt-2 border-t border-white/10">
+            <div class="flex flex-row items-end justify-between w-full pt-3 border-t border-white/10">
                 <div class="pl-4 flex flex-col gap-1 text-xs sm:text-sm font-body font-semibold">
                     <a href="https://wa.me/5493513265647" target="_blank" rel="noopener noreferrer"
                         class="flex items-center gap-1.5 hover:opacity-80 transition-opacity">
@@ -307,8 +309,8 @@
                 </div>
 
                 <a href="https://reservas.modomonte.com/webhook/cotizador-calendario" target="_blank" rel="noopener noreferrer"
-                    class="bg-mm-cream text-mm-brown rounded-l-full py-2 px-4 shadow-sm hover:bg-white transition-colors">
-                    <span class="font-body font-bold text-[10px] sm:text-xs leading-tight tracking-wider block uppercase">
+                    class="bg-mm-cream text-mm-brown rounded-l-full py-3 pl-5 pr-4 shadow-sm hover:bg-white transition-colors">
+                    <span class="font-arca-bold text-sm sm:text-base leading-tight tracking-wider block uppercase">
                         DISPONIBILIDAD<br>Y PRECIOS
                     </span>
                 </a>
